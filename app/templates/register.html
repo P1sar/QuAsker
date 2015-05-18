@@ -1,0 +1,31 @@
+{% extends "header.html" %}
+{% block content %}
+
+<h1>Register</h1>
+<form name="RegisterForm" action="" method="post" >
+
+	{{register_form.hidden_tag()}}
+
+	<p>
+		Please enter your Email:<br>
+		{{register_form.email}}<br>
+	</p>
+
+	<p>
+		Please enter your password:<br>
+		{{register_form.password}}<br>
+	</p>
+		Repeat your password:<br>
+		{{register_form.repeat_password}}
+
+	<p>
+		Please enter your nickname:<br>
+		{{register_form.nickname}}
+	</p>
+		{% for error in register_form.errors %}
+		<span style="color:red;">[{{error}}]</span>
+		{% endfor %}<br>
+	<p><input type="submit" value="Register"></p>
+</form>
+
+{% endblock %}

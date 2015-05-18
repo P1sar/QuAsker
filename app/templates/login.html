@@ -1,0 +1,24 @@
+{% extends "header.html" %}
+{% block content %}
+
+<h1>Log In</h1>
+<form name="LoginForm" action="" method="post" >
+
+	{{login_form.hidden_tag()}}
+
+	<p>
+		Please enter your Email:<br>
+		{{login_form.email}}<br>
+	</p>
+
+	<p>
+		Please enter your Password:<br>
+		{{login_form.password}}<br>
+	</p>
+
+	<p>{{login_form.remember_me}} Remember Me</p>
+
+	<p><input type="submit" value="Login"></p>
+</form>
+
+{% endblock %}

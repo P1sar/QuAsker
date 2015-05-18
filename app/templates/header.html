@@ -1,0 +1,27 @@
+<html>
+	<head>
+		{% if title %}
+		<title>{{title}} - QuAsker</title>
+		{% else %}
+		<title>Welcome to QuAsker</title>
+		{% endif %}
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="keywords" content="Вопрос, ответ, задать вопрос, получить ответ">
+	</head>
+	
+	<body>
+		<div>QuAsker|<a href="/index">Home</a>|<a href="/login">Login</a>|<a href="/register">Register</a></div>
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul>
+		{% for message in messages %}
+			<li>{{message}}</li>
+		{% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
+
+		<hr>
+		{% block content %}{% endblock %}
+	</body>
+</html>

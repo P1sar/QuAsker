@@ -1,0 +1,14 @@
+flask==0.10.1
+flask-admin==1.1.0
+flask-gravatar==0.4.1
+flask-login==0.2.11
+redis==2.10.3
+flask-redis==0.0.6
+sqlalchemy==0.9.8
+flask-sqlalchemy==2.0
+sqlalchemy-migrate
+flask-whooshalchemy
+wtforms == 2.0.2
+flask-wtf==0.11
+mysql-python==1.2.5
+flask-babel
