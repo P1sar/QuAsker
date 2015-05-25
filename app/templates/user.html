@@ -1,0 +1,21 @@
+{% extends "header.html" %}
+{% block content %}
+
+<h1>User: {{user.nickname}}</h1>
+<table>
+    <tr valign="top">
+        <td id="avatar"><img src="../static/avatars/{{user.nickname}}.png" alt ="{{user.nickname}}'s avatar" width="128" height="128"></td>
+        <td id="about_me">
+        {% if user.about_me %}
+        {{user.about_me}}
+        {% else %}
+        The user did not write about himself
+        {% endif %}
+        </td>
+    </tr>
+    <tr><td><a href="/edit_profile">Edit Profile</a></td></tr>
+</table>
+<em>Registrated: {{user.reg_date}}</em>
+<hr>
+
+{% endblock %}

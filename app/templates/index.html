@@ -2,11 +2,16 @@
 {% block content %}
 
 	<body>
-		{% if user_ip == "127.0.0.1" %}
-		<h1> Hello, {{current-user.nickname}}, from local </h1>
+		{% if current_user.nickname %}
+		<h1> Hello, {{current_user.nickname}}!!Welcome to QuAsker!! </h1>
 		{% else %}
-		<h1> Hello, {{current-user.nickname}}, from {{user_ip}} </h1>
+		<h1>Hello Guest! Welcome to QuAsker!<h1>
+		<h2>You must be logged in, to have a permission for asking a questions!</h2>
 		{% endif %}
+
+
+
+
 	</body>
 {% endblock %}
 

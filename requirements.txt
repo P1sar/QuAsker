@@ -14,3 +14,4 @@ mysql-python==1.2.5
 flask-babel
 flask-admin
 flask-oauth
+flask-uploads

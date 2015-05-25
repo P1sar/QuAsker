@@ -1,7 +1,8 @@
 from flask.ext.wtf import Form
-from wtforms import TextField, BooleanField, StringField, PasswordField
+from flask.ext.uploads import UploadSet, IMAGES
+from wtforms import TextField, BooleanField, StringField, PasswordField, TextAreaField
 from wtforms.validators import Required, Email, Length, equal_to
-
+from flask_wtf.file import  FileField, FileAllowed, FileRequired
 class LoginForm(Form):
 
 	email = StringField("Email",  validators = [Required(),
@@ -19,10 +20,17 @@ class RegisterForm(Form):
 
 	repeat_password = PasswordField("RepeatPassword", validators = [Required(),
 																	equal_to("password",
-																	message="Passwords must be equal")] )
-
+																	message="Passwords must be equal")]) 																
 	nickname = StringField("nick", validators = [Required(),
 												Length(min=3, max=10)])
+
+images = UploadSet('images', IMAGES)
+
+class EditProfile(Form):
+	about_me = TextAreaField('about_me', validators = [Length(min = 0, max = 140)])
+
+class EditAvatar(Form):
+	avatar = FileField("Your Avatar")
 
 
 

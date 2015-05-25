@@ -1,0 +1,23 @@
+{% extends "header.html" %}
+{% block content %}
+
+<h1>Edit Your Profile</h1>
+<hr>
+<form action="" method="post" name="EditProfile">
+	{{edit_form.hidden_tag()}}
+<div> Tell about your self:</div>
+<div>{{edit_form.about_me(cols=32, rows=4)}}</div>
+<input type = "submit" value = "Save Changes">
+</form>
+
+
+<form action="" method="post" name="EditAvatar">
+
+<div>Choose your avatar: </div>
+<p>{{edit_avatar.avatar}}
+<input type = "submit" value = "Save"></p>
+
+</form>
+
+
+{% endblock %}
