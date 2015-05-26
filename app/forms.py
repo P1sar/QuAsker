@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form
 from flask.ext.uploads import UploadSet, IMAGES
-from wtforms import TextField, BooleanField, StringField, PasswordField, TextAreaField
+from wtforms import TextField, BooleanField, StringField, PasswordField, TextAreaField, SubmitField
 from wtforms.validators import Required, Email, Length, equal_to
 from flask_wtf.file import  FileField, FileAllowed, FileRequired
 class LoginForm(Form):
@@ -30,7 +30,8 @@ class EditProfile(Form):
 	about_me = TextAreaField('about_me', validators = [Length(min = 0, max = 140)])
 
 class EditAvatar(Form):
-	avatar = FileField("Your Avatar")
+	avatar = FileField("file")
+	submit = SubmitField("Send")
 
 
 

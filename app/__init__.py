@@ -30,4 +30,8 @@ facebook = oauth.remote_app('facebook',
     request_token_params={'scope': 'email'}
 )
 
+app.config['UPLOAD_FOLDER'] = 'D:/FlaskProjects/QuAsker/app/static/avatars'
+app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg', 'gif'])
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
 from app import views, models

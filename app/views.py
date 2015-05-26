@@ -6,6 +6,7 @@ from wtforms.validators import ValidationError
 from models import User
 from datetime import datetime
 from werkzeug import secure_filename
+import os
 
 @lm.user_loader
 def load_user(user_id):
@@ -15,8 +16,7 @@ def load_user(user_id):
 @app.route("/")
 @app.route("/index")
 def index():
-    #user = {"nickname" : "Kirill"}
-    #getting connected user ip
+
     ip = request.remote_addr
     return render_template("index.html",
                             user_ip = ip)
@@ -117,8 +117,13 @@ def user(nickname):
 @login_required
 
 def edit():
+
     edit_form = EditProfile()
     edit_avatar = EditAvatar()
+
+    if edit_avatar.avatar.data:
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], current_user.nickname + ".png")
+        edit_avatar.avatar.data.save(file_path)
 
     if edit_form.validate_on_submit():
         about_me = edit_form.about_me.data
@@ -127,9 +132,5 @@ def edit():
         db.session.commit()
         return redirect(url_for('edit'))
 
-    if edit_avatar.validate_on_submit():
-
-        #filename = secure_filename(edit.avatar.data.filename)
-        edit_avatar.avatar.data.save('app')
 
     return render_template('edit_profile.html', edit_form = edit_form, edit_avatar = edit_avatar)
