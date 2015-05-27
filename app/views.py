@@ -1,9 +1,9 @@
 from app import app, db, lm
 from flask import render_template, request, flash, redirect, session, url_for, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from forms import LoginForm, RegisterForm, EditProfile, EditAvatar
+from forms import LoginForm, RegisterForm, EditProfile, EditAvatar, AskQuestion
 from wtforms.validators import ValidationError
-from models import User
+from models import User, Question
 from datetime import datetime
 from werkzeug import secure_filename
 import os
@@ -125,9 +125,9 @@ def user(nickname):
                             user = user)
 
 
+
 @app.route('/edit_profile', methods = ['GET','POST'])
 @login_required
-
 def edit():
 
     edit_form = EditProfile()
@@ -139,10 +139,26 @@ def edit():
 
     if edit_form.validate_on_submit():
         about_me = edit_form.about_me.data
-        current_user.about_me = edit_form.about_me.data
+        current_user.about_me = about_me
         db.session.add(current_user)
         db.session.commit()
         return redirect(url_for('edit'))
 
 
     return render_template('edit_profile.html', edit_form = edit_form, edit_avatar = edit_avatar)
+
+@app.route('/ask_question', methods = ["GET","POST"])
+@login_required
+
+def ask():
+    new_question = AskQuestion()
+
+    if new_question.validate_on_submit():
+        question_title = new_question.question_title.data
+        question_body = new_question.question_body.data
+        question = Question(title = question_title, body = question_body, 
+                            post_time =  datetime.now(), user_id = current_user.id)
+        db.session.add(question)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template("ask_question.html", new_question = new_question )
