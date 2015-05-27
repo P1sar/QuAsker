@@ -79,11 +79,23 @@ def register():
         nickname = register_form.nickname.data
         password = register_form.password.data
 
-        user = User(email=email, password = password,
-                     reg_date = datetime.utcnow(),
-                     nickname = nickname)
-        db.session.add(user)
-        db.session.commit()
+        #Verifaing email or nickname unique
+        email_conflict = User.query.filter_by(email = email).first()
+        nick_conflict = User.query.filter_by(nickname = nickname).first()
+        print email_conflict
+        #print nick_conflict
+        if email_conflict:
+            flash("This email is occupied already")
+            return redirect (url_for('register'))
+        elif nick_conflict:
+            flash("This nick is occupied already")
+            return redirect (url_for('register'))
+        else:
+            user = User(email=email, password = password,
+                        reg_date = datetime.now(),
+                        nickname = nickname)
+            db.session.add(user)
+            db.session.commit()
 
         return redirect(url_for('index'))
 

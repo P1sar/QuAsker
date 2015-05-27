@@ -13,7 +13,10 @@
         {% endif %}
         </td>
     </tr>
+    {% if user.nickname == current_user.nickname %}
     <tr><td><a href="/edit_profile">Edit Profile</a></td></tr>
+    {% else %}
+    {% endif %}
 </table>
 <em>Registrated: {{user.reg_date}}</em>
 <hr>
