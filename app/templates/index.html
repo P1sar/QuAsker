@@ -9,6 +9,16 @@
 		<h2>You must be logged in, to have a permission for asking a questions!</h2>
 		{% endif %}
 
+		<h3>Recently asked questions:</h3>
+		<hr>
+		{% for questions in question %}
+		<div>
+		<a href ="{{ url_for('question',id = questions.id) }}" ><p class ="question"> {{questions}} </p></a>
+		<br>Posted: {{questions.post_time}}
+		<br>by: {{questions.author.nickname}}
+		<hr>
+		<divp>
+		{% endfor %}
 
 
 

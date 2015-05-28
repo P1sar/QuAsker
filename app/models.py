@@ -34,9 +34,15 @@ class Question(db.Model):
 	post_time = db.Column(db.DateTime)
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 	answer = db.relationship("Answer", backref ="answer", lazy = "dynamic" )
+	#category_id = db.Column(db.Integer, db.ForeignKey("category.id"))
 
 	def __repr__(self):
-		return "<Post %r>" % (self.body)
+		return self.title
+
+class Category(db.Model):
+	id = db.Column(db.Integer, primary_key = True)
+	name = db.Column(db.String(50))
+	#question_id = db.relationship("Question", backref = "question", lazy = "dynamic")
 
 class Answer(db.Model):
 	id = db.Column(db.Integer, primary_key = True)

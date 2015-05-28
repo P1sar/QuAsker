@@ -17,9 +17,16 @@ def load_user(user_id):
 @app.route("/index")
 def index():
 
+    question = Question.query.order_by(Question.post_time.desc()).all()
+
+    by_user = User.query.all()
+
+
+
     ip = request.remote_addr
-    return render_template("index.html",
-                            user_ip = ip)
+
+    return render_template("index.html",question = question,
+                            user_ip = ip, user = by_user)
 
 
 
@@ -162,3 +169,11 @@ def ask():
         db.session.commit()
         return redirect(url_for('index'))
     return render_template("ask_question.html", new_question = new_question )
+
+@app.route("/question/<id>", methods = ["GET","POST"])
+def question(id):
+
+    full_question = Question.query.filter_by(id = id).first()
+    author = Question.query.all()
+
+    return render_template("question.html", full_question = full_question)
