@@ -174,6 +174,5 @@ def ask():
 def question(id):
 
     full_question = Question.query.filter_by(id = id).first()
-    author = Question.query.all()
-
-    return render_template("question.html", full_question = full_question)
+    
+    return render_template("question.html", full_question = full_question, author = author)
