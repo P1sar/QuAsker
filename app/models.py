@@ -1,5 +1,6 @@
-from app import db
+from app import db, app
 from flask.ext.login import UserMixin
+import flask.ext.whooshalchemy as whooshalchemy
 
 class User(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key = True)
@@ -29,6 +30,9 @@ class User(db.Model, UserMixin):
 		return '<User %r>' % (self.nickname)
 
 class Question(db.Model):
+	__searchable__ = ['body']
+
+
 	id = db.Column(db.Integer, primary_key = True)
 	title  = db.Column(db.String(140))
 	body = db.Column(db.Text)
@@ -46,6 +50,8 @@ class Category(db.Model):
 	#question_id = db.relationship("Question", backref = "question", lazy = "dynamic")
 
 class Answer(db.Model):
+
+
 	id = db.Column(db.Integer, primary_key = True)
 	body = db.Column(db.Text)
 	user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
@@ -53,3 +59,7 @@ class Answer(db.Model):
 	ans_time = db.Column(db.DateTime)
 	votes = db.Column(db.Integer, default = 0)
 	voted_users_id = db.Column(db.String, default = "")
+
+
+whooshalchemy.whoosh_index(app, Question)
+

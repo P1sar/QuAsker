@@ -19,15 +19,20 @@
 
 			{% for questions in question.items %}
 		<div class="row">
-			<div id="question_block" class="col-md-8">
-				<a href ="{{ url_for('question',id = questions.id) }}" ><h3 class ="question">{{questions}} </h3></a>
+			<div id="question_block" class="col-md-12">
+				<div class="question_title">
+					<a href ="{{ url_for('question',id = questions.id) }}" ><h3 class ="question">{{questions}} </h3></a>
+				</div>
+	<hr>
 				<p>Posted: {{questions.post_time | format_date }}
 				 by: <a href ="{{ url_for('user', nickname = questions.author.nickname) }}">
 			{{questions.author.nickname}}</a></p>
-	<hr>
 			</div>
 		</div>
 			{% endfor %}
+
+		<div class="row">
+			<div id="pages_switch" >
 
 			{% if question.has_prev %}<a href="{{ url_for('index', page = question.prev_num) }}"><< {{question.prev_num}}</a>
 
@@ -37,6 +42,9 @@
 			{% endif %} | 
 			{% if question.has_next %}<a href="{{ url_for('index', page = question.next_num) }}">{{question.next_num}} >></a>{% else %}{{question.next_num}} >>
 			{% endif %}
+
+			</div>
+		</div>
 
 	</body>
 {% endblock %}

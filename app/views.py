@@ -1,13 +1,18 @@
 from app import app, db, lm, facebook
 from flask import render_template, request, flash, redirect, session, url_for, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from forms import LoginForm, RegisterForm, EditProfile, EditAvatar, AskQuestion, WriteAnswer, VoteAnswer
+from forms import LoginForm, RegisterForm, EditProfile, EditAvatar, AskQuestion, WriteAnswer, SearchForm
 from wtforms.validators import ValidationError
 from models import User, Question, Answer
 from datetime import datetime
 from werkzeug import secure_filename
+from config import MAX_SEARCH_RESULTS
 import hashlib
 import os
+
+@app.before_request
+def before_request():
+    g.search_form = SearchForm()
 
 @app.template_filter('format_date')
 def format_date(s):
@@ -23,17 +28,27 @@ def load_user(user_id):
 @app.route('/index/<int:page>', methods = ['GET', 'POST'])
 def index(page = 1):
 
-    question = Question.query.order_by(Question.post_time.desc()).paginate(page,3, False)
-
-
+    question = Question.query.order_by(Question.post_time.desc()).paginate(page, 5, False)
     by_user = User.query.all()
-
-
-
     ip = request.remote_addr
 
     return render_template("index.html",question = question,
                             user_ip = ip, user = by_user)
+
+@app.route('/search', methods = ['POST'])
+@login_required
+def search():
+    if not g.search_form.validate_on_submit():
+        return redirect(url_for('index'))
+    return redirect(url_for('search_results', query = g.search_form.search.data))
+
+@app.route('/search_results/<query>')
+@login_required
+def search_results(query):
+    results = Question.query.whoosh_search(query, MAX_SEARCH_RESULTS).all()
+    return render_template('search_results.html',
+        query = query,
+        results = results)
 
 
 

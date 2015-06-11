@@ -44,8 +44,8 @@ class WriteAnswer(Form):
 	answer_body = TextAreaField("Answer", validators = [Required()])
 	answer_submit = SubmitField("Answer")
 
-class VoteAnswer(Form):
-	vote_answer = SubmitField("Vote")
+class SearchForm(Form):
+    search = TextField('search', validators = [Required()])
 
 
 

@@ -1,0 +1,8 @@
+{% extends "header.html" %}
+
+{% block content %}
+<h1>Search results for "{{query}}":</h1>
+{% for results in results %}
+    {{ results.data }}
+{% endfor %}
+{% endblock %}
