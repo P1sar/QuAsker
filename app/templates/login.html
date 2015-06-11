@@ -18,7 +18,7 @@
 
 	<p>{{login_form.remember_me}} Remember Me</p>
 
-	<p><input type="submit" value="Login"> | <a href="/login">Login with Facebook</a></p>
+	<p><input type="submit" value="Login"> | <a href="{{url_for('login_facebook')}}"><img src="static/facebook.png" width="25" height="25"></a></p>
 </form>
 
 {% endblock %}

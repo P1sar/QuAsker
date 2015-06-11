@@ -4,7 +4,9 @@
 <h1>User: {{user.nickname}}</h1>
 <table>
     <tr valign="top">
-        <td id="avatar"><img src="../static/avatars/{{user.nickname}}.png" alt ="{{user.nickname}}'s avatar" width="128" height="128"></td>
+        <td id="avatar"><img src="../static/avatars/{{user.nickname}}.png"
+         alt ="{{user.nickname}}'s avatar" width="128" height="128"></td>
+
         <td id="about_me">
         {% if user.about_me %}
         {{user.about_me}}
@@ -18,7 +20,18 @@
     {% else %}
     {% endif %}
 </table>
-<em>Registrated: {{user.reg_date}}</em>
+<em>Registrated: {{user.reg_date | format_date}}</em>
 <hr>
+<ol>User Questions:
+	{% for question in questions %}
+	<li><a href="{{url_for('question', id=question.id)}}">{{ question }}</a></li>
+	{% endfor %}
+</ol>
+<ul>User Answers:
+	{% for answer in answers %}
+	<li>>{{ answer.body[0:50] }}</li>
+	{% endfor %}
+</ul>
+
 
 {% endblock %}

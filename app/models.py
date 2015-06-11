@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
 	reg_date = db.Column(db.DateTime)
 	question = db.relationship("Question", backref = "author", lazy = "dynamic" )
 	answer = db.relationship("Answer", backref = "author", lazy = "dynamic")
+	root = db.Column(db.Boolean, default = False)
 
 
 
@@ -50,3 +51,5 @@ class Answer(db.Model):
 	user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 	question_id = db.Column(db.Integer, db.ForeignKey("question.id"))
 	ans_time = db.Column(db.DateTime)
+	votes = db.Column(db.Integer, default = 0)
+	voted_users_id = db.Column(db.String, default = "")

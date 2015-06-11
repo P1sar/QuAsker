@@ -1,0 +1,43 @@
+.container{
+
+	margin-top: 20px
+}
+
+.navbar .divider-vertical {
+height: 50px;
+margin: 0 9px;
+border-right: 1px solid #ffffff;
+border-left: 1px solid #f2f2f2;
+}
+
+div #question_block {
+	background-color: #EEDFCC;
+	margin-left: 100px;
+	color: black;
+	height:100px;
+}
+
+div #question_block a {
+
+	color: black;
+}
+
+div #question_block p {
+	color: black;
+}
+
+div #header h1 {
+
+	margin: auto;
+	text-align: center;
+}
+div #header {
+	margin-left: 100px;
+}
+
+#full_question_body p{
+
+}
+#question_block p  {
+	font-style: italic;
+}

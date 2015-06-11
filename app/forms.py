@@ -35,11 +35,17 @@ class EditAvatar(Form):
 
 
 class AskQuestion(Form):
-	question_title = StringField("Title",validators = [Required()])
-	question_body = TextAreaField("Question", validators = [Required()])
+	question_title = StringField("Title",validators = [Required(), Length(min = 0, max = 50)])
+	question_body = TextAreaField("Question", validators = [Required(), Length(min = 0, max = 9999)])
 	question_submit = SubmitField("Ask")
 
 
+class WriteAnswer(Form):
+	answer_body = TextAreaField("Answer", validators = [Required()])
+	answer_submit = SubmitField("Answer")
+
+class VoteAnswer(Form):
+	vote_answer = SubmitField("Vote")
 
 
 

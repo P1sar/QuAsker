@@ -2,11 +2,63 @@
 {% block content %}
 
 
-<img src="../static/avatars/{{full_question.author.nickname}}.png" alt ="{{full_question.author.nickname}}'s avatar" width="64" height="64">
-<p>{{full_question.author.nickname}}</p>
+<img src="../static/avatars/{{full_question.author.nickname}}.png" 
+alt ="{{full_question.author.nickname}}'s avatar" width="64" height="64">
+
+<p id="question_author_nickname"> {{full_question.author.nickname}} </p>
 <hr>
-<h1>{{full_question.title}}</h1>
+	<div class="row">
 
-<p>{{full_question.body}}<p>
+		<div id="full_question_body" class="col-md-8">
 
+			<h2 id="question_title"> {{full_question.title}} </h2>
+			<p id="question_body"> {{full_question.body}} </p>
+
+		</div>
+
+	</div>
+			
+
+
+			<h2>Answers:</h2>
+<hr>
+				{% for answer in current_question_answers %}
+	<p>
+			<img src="../static/avatars/{{answer.author.nickname}}.png" 
+			alt ="{{full_question.author.nickname}}'s avatar" width="64" height="64">
+			{{answer.author.nickname}}:
+	</p>
+
+				<div> {{answer.body}} </div>
+				
+				<div class="vote_button"> 
+					<form action = "" method = "post" name = "votequestion">
+
+					    {% if answer.votes > 0 %}
+					    <a class="like"href="{{ url_for('vote', id = answer.id) }}"><span class="glyphicon glyphicon-heart"></span></a>
+					    {% else %}
+					    <a class="like"href="{{ url_for('vote', id = answer.id) }}"><span class="glyphicon glyphicon-heart-empty"></span></a>
+					    {% endif %}
+					    {{answer.votes}}
+
+					</form>   
+				</div>
+				
+
+	<p>Posted at: {{answer.ans_time | format_date}} </p>
+
+<hr>
+{% endfor %}
+{% if current_user.is_authenticated() %}
+
+<h2>Your Answer:</h2>
+<form action = "" method = "post" name = "askquestion">
+	{{new_answer.hidden_tag()}}
+	{{new_answer.answer_body(cols=60, rows=7)}}
+	<p>{{new_answer.answer_submit}}</p>
+</form>
+<hr>
+{% else %}
+<p>You dont have permission to answer the questions! Please Login!</p>
+{% endif %}
 {% endblock %}
