@@ -33,14 +33,14 @@ alt ="{{full_question.author.nickname}}'s avatar" width="64" height="64">
 				
 				<div class="vote_button"> 
 					<form action = "" method = "post" name = "votequestion">
-
+{% if current_user.is_authenticated() %}
 					    {% if answer.votes > 0 %}
 					    <a class="like"href="{{ url_for('vote', id = answer.id) }}"><span class="glyphicon glyphicon-heart"></span></a>
 					    {% else %}
 					    <a class="like"href="{{ url_for('vote', id = answer.id) }}"><span class="glyphicon glyphicon-heart-empty"></span></a>
 					    {% endif %}
 					    {{answer.votes}}
-
+{% endif %}
 					</form>   
 				</div>
 				

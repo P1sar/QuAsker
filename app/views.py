@@ -18,11 +18,12 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 
-@app.route("/")
-@app.route("/index")
-def index():
+@app.route("/", methods = ['GET', 'POST'])
+@app.route("/index", methods = ['GET', 'POST'])
+@app.route('/index/<int:page>', methods = ['GET', 'POST'])
+def index(page = 1):
 
-    question = Question.query.order_by(Question.post_time.desc()).all()
+    question = Question.query.order_by(Question.post_time.desc()).paginate(page,3, False)
 
 
     by_user = User.query.all()
@@ -64,7 +65,7 @@ def login():
                     user.is_authenticated = True
                     user.last_seen = datetime.now()
                     remember_me = login_form.remember_me.data
-                    print remember_me
+
                     db.session.add(user)
                     db.session.commit()
                     login_user(user, remember = remember_me)
@@ -200,6 +201,8 @@ def question(id):
     author = full_question.author.nickname
     new_answer = WriteAnswer()
     current_question_answers = Answer.query.filter_by(question_id = id).all()
+    
+
 
 
 
@@ -261,7 +264,7 @@ def oauth_authorized(resp):
 
     user_data = facebook.get('/me').data
     user = User.query.filter(User.email == user_data['email']).first()
-    print user_data['email']
+
 
     if user is None:
         new_user = User(id=user_data['id'], email=user_data['email'],

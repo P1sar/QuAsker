@@ -15,16 +15,9 @@
 			</div>
 		</div>
 	<hr>
-						<script type="text/javascript">
 
-						$(document).ready(function(){
-							$(".question_block").click(function() {
-								$(".question_block").hide()
-							})
-						});
-					    </script>
 
-			{% for questions in question %}
+			{% for questions in question.items %}
 		<div class="row">
 			<div id="question_block" class="col-md-8">
 				<a href ="{{ url_for('question',id = questions.id) }}" ><h3 class ="question">{{questions}} </h3></a>
@@ -35,6 +28,15 @@
 			</div>
 		</div>
 			{% endfor %}
+
+			{% if question.has_prev %}<a href="{{ url_for('index', page = question.prev_num) }}"><< {{question.prev_num}}</a>
+
+			{% elif	question.prev_num == 0  %}
+			<<
+			{% else %} << {{question.prev_num}}
+			{% endif %} | 
+			{% if question.has_next %}<a href="{{ url_for('index', page = question.next_num) }}">{{question.next_num}} >></a>{% else %}{{question.next_num}} >>
+			{% endif %}
 
 	</body>
 {% endblock %}
