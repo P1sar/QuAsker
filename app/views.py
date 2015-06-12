@@ -97,7 +97,7 @@ def login():
                             login_form=login_form)
 
 
-
+#Register functions
 @app.route("/register", methods = ["GET", "POST"])
 def register():
     if current_user is not None and current_user.is_authenticated():

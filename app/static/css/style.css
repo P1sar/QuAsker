@@ -5,10 +5,10 @@
 }
 
 .navbar .divider-vertical {
-height: 50px;
-margin: 0 9px;
-border-right: 1px solid #ffffff;
-border-left: 1px solid #f2f2f2;
+	height: 50px;
+	margin: 0 9px;
+	border-right: 1px solid #ffffff;
+	border-left: 1px solid #f2f2f2;
 }
 
 div #question_block {
@@ -22,6 +22,7 @@ div #question_block {
 }
 
 div #question_block hr {
+
 	margin:5px;
 }
 
@@ -42,6 +43,7 @@ div #header h1 {
 	text-align: center;
 }
 div #header {
+
 	margin-left: 100px;
 }
 
@@ -49,13 +51,35 @@ div #header {
 
 }
 #question_block p  {
+
 	font-style: italic;
 }
 
 div #pages_switch {
+
 	text-align: center;
 }
 
 ul li .search_form{
+
 	margin-top: 50px;
+}
+
+div #logging_form{
+	margin: auto;
+	background: #DCDCDC;
+	width: 200px;
+	padding: 10px;
+	padding-left: 20px;
+} 
+div #register_form{
+	margin: auto;
+	background: #DCDCDC;
+	width: 200px;
+	padding: 10px;
+	padding-left: 20px;
+} 
+
+div #avatar_choose_from{
+	padding-top: 20px;
 }
