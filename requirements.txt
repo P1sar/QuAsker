@@ -11,7 +11,5 @@ flask-whooshalchemy
 wtforms == 2.0.2
 flask-wtf==0.11
 mysql-python==1.2.5
-flask-babel
 flask-admin
 flask-oauth
-flask-uploads

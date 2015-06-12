@@ -1,5 +1,4 @@
 from flask.ext.wtf import Form
-from flask.ext.uploads import UploadSet, IMAGES
 from wtforms  import TextField, BooleanField, StringField, PasswordField, TextAreaField, SubmitField
 from wtforms.validators import Required, Email, Length, equal_to
 from flask_wtf.file import  FileField, FileAllowed, FileRequired
@@ -24,7 +23,7 @@ class RegisterForm(Form):
 	nickname = StringField("nick", validators = [Required(),
 												Length(min=3, max=10)])
 
-images = UploadSet('images', IMAGES)
+
 
 class EditProfile(Form):
 	about_me = TextAreaField('about_me', validators = [Length(min = 0, max = 140)])
