@@ -38,8 +38,9 @@
 					<li><a href="/register">Register</a></li>
 					<li class="divider-vertical"></li>
 				{% endif %}
-					<li class="search_form"><form  action="{{url_for('search')}}" method="post" name="search">{{g.search_form.hidden_tag()}}{{g.search_form.search(size=40)}}<input type="submit" value="Search"></form></li>
-
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="search_form"><form class="navbar-form" action="{{url_for('search')}}" method="post" name="search">{{g.search_form.hidden_tag()}}{{g.search_form.search(size=40)}}<input type="submit" value="Search"></form></li>
 				</ul>
 			</nav>	
 		

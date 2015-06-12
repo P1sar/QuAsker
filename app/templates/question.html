@@ -11,8 +11,8 @@ alt ="{{full_question.author.nickname}}'s avatar" width="64" height="64">
 
 		<div id="full_question_body" class="col-md-8">
 
-			<h2 id="question_title"> {{full_question.title}} </h2>
-			<p id="question_body"> {{full_question.body}} </p>
+			<h2 id="question_title"> {{full_question.title}}: </h2>
+				<div  class="well well-lg" id="question_body"> {{full_question.body}} </div>
 
 		</div>
 
@@ -29,7 +29,7 @@ alt ="{{full_question.author.nickname}}'s avatar" width="64" height="64">
 			{{answer.author.nickname}}:
 	</p>
 
-				<div> {{answer.body}} </div>
+				<div class="well well-lg" id="answer_body"> {{answer.body}} </div>
 				
 				<div class="vote_button"> 
 					<form action = "" method = "post" name = "votequestion">

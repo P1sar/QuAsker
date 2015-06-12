@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
 		return '<User %r>' % (self.nickname)
 
 class Question(db.Model):
-	__searchable__ = ['body']
+	__searchable__ = ['title'] #fields indexed by whoosh
 
 
 	id = db.Column(db.Integer, primary_key = True)

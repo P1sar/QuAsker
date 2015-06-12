@@ -2,7 +2,13 @@
 
 {% block content %}
 <h1>Search results for "{{query}}":</h1>
-{% for results in results %}
-    {{ results.data }}
+
+
+<div class="list-group" id="search_results_list">
+{% for result in results %}
+
+    <a href="#" class="list-group-item" ><h4 class="list-group-item-heading">{{ result }}</h4>
+
+    <a>
 {% endfor %}
 {% endblock %}

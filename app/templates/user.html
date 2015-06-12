@@ -22,14 +22,25 @@
 </table>
 <em>Registrated: {{user.reg_date | format_date}}</em>
 <hr>
-<ol>User Questions:
-	{% for question in questions %}
-	<li><a href="{{url_for('question', id=question.id)}}">{{ question }}</a></li>
-	{% endfor %}
-</ol>
-<ul>User Answers:
+
+
+<div class="list-group" id="user_questions_list">
+<h4>User Questions:</h4>
+		{% for question in questions %}
+		<a href="{{url_for('question', id=question.id)}}" class="list-group-item"><h4 class="list-group-item-heading">{{ question }}</h4>
+		<p class="list-group-item-text">{{ question.body[0:50]}}...</p></a>
+		{% endfor %}
+
+
+
+
+
+
+
+
+<ul class="list-group"><h4>User Answers:</h4>
 	{% for answer in answers %}
-	<li>>{{ answer.body[0:50] }}</li>
+	<li class="list-group-item"i>>{{ answer.body[0:50] }}</li>
 	{% endfor %}
 </ul>
 

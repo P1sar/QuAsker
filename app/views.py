@@ -22,7 +22,7 @@ def format_date(s):
 def load_user(user_id):
     return User.query.get(user_id)
 
-
+#!!Main page!!
 @app.route("/", methods = ['GET', 'POST'])
 @app.route("/index", methods = ['GET', 'POST'])
 @app.route('/index/<int:page>', methods = ['GET', 'POST'])
@@ -35,6 +35,7 @@ def index(page = 1):
     return render_template("index.html",question = question,
                             user_ip = ip, user = by_user)
 
+#Searching function's 
 @app.route('/search', methods = ['POST'])
 @login_required
 def search():
@@ -51,7 +52,7 @@ def search_results(query):
         results = results)
 
 
-
+#Login user function
 @app.route("/login", methods = ["GET", "POST"])
 def login():
 

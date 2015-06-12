@@ -20,9 +20,7 @@
 			{% for questions in question.items %}
 		<div class="row">
 			<div id="question_block" class="col-md-12">
-				<div class="question_title">
 					<a href ="{{ url_for('question',id = questions.id) }}" ><h3 class ="question">{{questions}} </h3></a>
-				</div>
 	<hr>
 				<p>Posted: {{questions.post_time | format_date }}
 				 by: <a href ="{{ url_for('user', nickname = questions.author.nickname) }}">
@@ -34,7 +32,7 @@
 		<div class="row">
 			<div id="pages_switch" >
 
-			{% if question.has_prev %}<a href="{{ url_for('index', page = question.prev_num) }}"><< {{question.prev_num}}</a>
+			{% if question.has_prev %}<a href="{{ url_for('index', page = question.prev_num) }}"> << {{question.prev_num}}</a>
 
 			{% elif	question.prev_num == 0  %}
 			<<
