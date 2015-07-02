@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}">
 		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.3.js')}}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js')}}"></script>
+		<script type="text/javascript" defer   src="{{ url_for('static', filename='js/script.js')}}"></script>
 <!-- end links -->
 	</head>
 	
@@ -21,7 +22,7 @@
 	<body>
 		<div class="container">
 			<nav class="navbar navbar-default">
-				<ul class="nav navbar-nav">	
+				<ul class="nav navbar-nav" id="top_navigation_bar">	
 
 					<li><a class="navbar-brand" href="/index">Home</a></li>
 					<li class="divider-vertical"></li>

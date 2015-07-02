@@ -19,7 +19,7 @@
 
 			{% for questions in question.items %}
 		<div class="row">
-			<div id="question_block" class="col-md-12">
+			<div  class="col-md-12 question_block" id="question_block">
 					<a href ="{{ url_for('question',id = questions.id) }}" ><h3 class ="question">{{questions}} </h3></a>
 	<hr>
 				<p>Posted: {{questions.post_time | format_date }}

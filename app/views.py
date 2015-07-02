@@ -236,7 +236,7 @@ def question(id):
     return render_template("question.html", full_question = full_question,
                          author = author, new_answer = new_answer, 
                          current_question_answers = current_question_answers,
-                         vote = vote, os = os)
+                        )
 
 
 @app.route("/vote/<id>", methods = ["GET","POST"])
@@ -247,7 +247,11 @@ def vote(id):
 
     #Cheking if user in the voted_users_list. If he is, flash notice, if not, approve voting
     if str(current_user.id) in voted_list:
-        flash("U voted already", 'notice')
+        answer_carma.votes = answer_carma.votes-1
+        voted_list.remove(str(current_user.id))
+        answer_carma.voted_users_id = (",").join(voted_list)
+        print answer_carma.voted_users_id
+        db.session.commit() 
     else:
         answer_carma.votes+=1
         answer_carma.voted_users_id += "," + str(current_user.id)

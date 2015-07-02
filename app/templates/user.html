@@ -6,14 +6,17 @@
     <tr valign="top">
         <td id="avatar"><img src="../static/avatars/{{user.nickname}}.png"
          alt ="{{user.nickname}}'s avatar" width="128" height="128"></td>
-
+   
         <td id="about_me">
-        {% if user.about_me %}
-        {{user.about_me}}
-        {% else %}
-        The user did not write about himself
-        {% endif %}
+            <div class="well well-lg" id="about_me">
+                {% if user.about_me %}
+                {{user.about_me}}
+                {% else %}
+                The user did not write about himself
+                {% endif %}
+            </div>
         </td>
+    
     </tr>
     {% if user.nickname == current_user.nickname %}
     <tr><td><a href="/edit_profile">Edit Profile</a></td></tr>
